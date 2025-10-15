@@ -19,7 +19,10 @@ extracted AS (
         TYPE,
         geometry_json:type::string AS geometry_type,
         geometry_json:coordinates[0]::float AS longitude,
-        geometry_json:coordinates[1]::float AS latitude
+        geometry_json:coordinates[1]::float AS latitude,
+        properties_json:Address::string AS address,
+        properties_json:Alias::string AS alias
+
     
     FROM parsed
 )
