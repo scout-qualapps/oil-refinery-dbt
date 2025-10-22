@@ -41,12 +41,12 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ada/qual/dbt-test:oil_refinery_transformation .
+          docker build -t ada/qual/dbt-test:oil_refinery_dbt .
 
       - name: Tag Docker image for ECR Public
         run: |
-          docker tag ada/qual/dbt-test:oil_refinery_transformation 771225398400.dkr.ecr.us-west-2.amazonaws.com/ada/qual/dbt-test:oil_refinery_transformation
+          docker tag ada/qual/dbt-test:oil_refinery_dbt 771225398400.dkr.ecr.us-west-2.amazonaws.com/ada/qual/dbt-test:oil_refinery_dbt
 
       - name: Push Docker image to ECR Public
         run: |
-          docker push 771225398400.dkr.ecr.us-west-2.amazonaws.com/ada/qual/dbt-test:oil_refinery_transformation
+          docker push 771225398400.dkr.ecr.us-west-2.amazonaws.com/ada/qual/dbt-test:oil_refinery_dbt
