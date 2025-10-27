@@ -41,12 +41,12 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ada/qual/dbt-test:or_tf .
+          docker build -t ada/qual/dbt-test:or_dbt .
 
       - name: Tag Docker image for ECR Public
         run: |
-          docker tag ada/qual/dbt-test:or_tf 771225398400.dkr.ecr.us-west-2.amazonaws.com/ada/qual/dbt-test:or_tf
+          docker tag ada/qual/dbt-test:or_dbt 771225398400.dkr.ecr.us-west-2.amazonaws.com/ada/qual/dbt-test:or_dbt
 
       - name: Push Docker image to ECR Public
         run: |
-          docker push 771225398400.dkr.ecr.us-west-2.amazonaws.com/ada/qual/dbt-test:or_tf
+          docker push 771225398400.dkr.ecr.us-west-2.amazonaws.com/ada/qual/dbt-test:or_dbt
