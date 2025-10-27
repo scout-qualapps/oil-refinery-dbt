@@ -1,29 +1,27 @@
-{{ config(
-    alias='oil_refinery_base',
-    materialized='incremental'
-) }}
 
-WITH parsed AS (
-    SELECT
-        _AIRBYTE_RAW_ID,
-        ID,
-        TYPE,
-        GEOMETRY   AS geometry_json,
-        PROPERTIES AS properties_json
-    FROM {{ source('oil_refinery_esri', 'oil_refinery_raw') }}
-),
-extracted AS (
-    SELECT
-        _AIRBYTE_RAW_ID,
-        ID,
-        TYPE,
-        geometry_json:type::string AS geometry_type,
-        geometry_json:coordinates[0]::float AS longitude,
-        geometry_json:coordinates[1]::float AS latitude,
-        properties_json:Address::string AS address,
-        properties_json:Alias::string AS alias
+/*
+    Welcome to your first dbt model!
+    Did you know that you can also configure models directly within SQL files?
+    This will override configurations stated in dbt_project.yml
 
-    
-    FROM parsed
+    Try changing "table" to "view" below
+*/
+
+{{ config(materialized='table') }}
+
+with source_data as (
+
+    select 1 as id
+    union all
+    select null as id
+
 )
-SELECT * FROM extracted
+
+select *
+from source_data
+
+/*
+    Uncomment the line below to remove records with null `id` values
+*/
+
+-- where id is not null
